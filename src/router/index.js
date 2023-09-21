@@ -6,13 +6,14 @@ import TermsPage from "@/views/TermsPage.vue";
 import PrivacyPage from "@/views/PrivacyPage.vue";
 import ChatPage from "@/views/ChatPage.vue";
 
-const baseUrl = 'https://game-scribe-frontend.vercel.app';
+const baseUrl = '';
 
 const routes = [
   {
     path: baseUrl + "/",
     name: "Home",
     component: HomePage,
+    meta: { requiresAuth: false, landingPage: true, title: ` ⊹ GameScribe` }
   },
   {
     path: baseUrl + "/login",

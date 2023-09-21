@@ -12,7 +12,7 @@ const routes = [
   {
     path: baseUrl + "/",
     name: "Home",
-    component: HomePage,
+    component: LoginPage,
     meta: { requiresAuth: false, landingPage: true, title: ` ⊹ GameScribe` }
   },
   {

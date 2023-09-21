@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Open San";
+    src: url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+}
+
+body {
+    margin: 0;
+    background-color: #050618;
+    color: #FFF;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}

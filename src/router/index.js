@@ -6,7 +6,7 @@ import TermsPage from "@/views/TermsPage.vue";
 import PrivacyPage from "@/views/PrivacyPage.vue";
 import ChatPage from "@/views/ChatPage.vue";
 
-const baseUrl = '';
+const baseUrl = 'https://game-scribe-frontend.vercel.app';
 
 const routes = [
   {

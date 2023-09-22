@@ -2,6 +2,12 @@
 import { URLCONST } from '@/const/url.js';
 import { ValidateUtil } from '@/library/validate.js';
 import axios from 'axios'
+import { LOCALSTORAGE_USERSESSION } from '@/const/value.js';
+import { removeLocalStorage } from '@/library/auth.js';
+
+
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 export default {
     name: 'register',
@@ -53,6 +59,21 @@ export default {
                     .post(URLCONST.registerAPI, this.formValue)
                     .then((response) => {
                         console.log(response)
+                        if (response.status == 200 && response?.data) {
+                            const result = response.data;
+                            if (result.status) {
+                                // register success
+                                window.location.assign('/login')
+                            } else {
+                                // register fail
+                                toast(result.result, {
+                                    autoClose: 1000,
+                                }); // ToastOptions
+                                removeLocalStorage(LOCALSTORAGE_USERSESSION)
+                            }
+                        } else {
+                            removeLocalStorage(LOCALSTORAGE_USERSESSION)
+                        }
                     })
             }
         },

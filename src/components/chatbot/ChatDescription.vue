@@ -57,7 +57,7 @@ Venture forth, for encountering the Draegonspire will test your courage, wit, an
                 <span class="key">Edit</span>
             </div>
         </div>
-        <textarea class="desc-content custom-scroll-small scroll-div-y" v-bind:readonly="!editState" v-html="descContent"></textarea>
+        <textarea class="desc-content custom-scroll-small scroll-div-y" :class="editState && 'edit-active'" v-bind:readonly="!editState" v-html="descContent"></textarea>
     </div>
 </template>
 
@@ -68,7 +68,7 @@ Venture forth, for encountering the Draegonspire will test your courage, wit, an
     padding: 16px 24px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     justify-content: space-between;
 }
 
@@ -132,6 +132,11 @@ Venture forth, for encountering the Draegonspire will test your courage, wit, an
     height: 100%;
     box-sizing: border-box;
     flex: 1 1 auto;
-    padding-right: 10px;
+    padding: 5px 10px;
+}
+
+.desc-content.edit-active {
+    border: 1px solid #3f3f3f;
+    background-color: #FFFFFF11;
 }
 </style>

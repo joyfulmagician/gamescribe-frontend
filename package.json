@@ -13,7 +13,9 @@
     "axios": "^1.5.0",
     "tailwindcss-animated": "^1.0.1",
     "vue": "^3.3.4",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "vue-star-rating": "^2.1.0",
+    "vue3-toastify": "^0.1.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

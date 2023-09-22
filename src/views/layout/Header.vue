@@ -8,7 +8,7 @@
             <img class="w-[217px] h-[26px]" src="@/assets/images/title-logo.png" />
         </a>
         <div class="flex items-center justify-between w-[468px] header-nav">
-            <div class="nav-item pointer">Marketplace</div>
+            <a class="nav-item pointer" href="/marketplace">Marketplace</a>
             <div class="nav-item pointer">Encyclopedia</div>
             <div class="nav-item pointer">Tools</div>
         </div>

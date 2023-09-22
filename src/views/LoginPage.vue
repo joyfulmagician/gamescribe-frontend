@@ -1,3 +1,82 @@
+<script>
+
+import { setAuthenticate, removeLocalStorage } from '@/library/auth.js';
+import { LOCALSTORAGE_USERSESSION } from '@/const/value.js';
+
+import { ValidateUtil } from '@/library/validate.js';
+import axios from 'axios'
+import { URLCONST } from '@/const/url.js';
+
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+
+
+export default {
+    name: 'register',
+    created: function () {
+    },
+    mounted() {
+    },
+    unmounted() {
+    },
+    data() {
+        return {
+            formValue: {
+                email: '',
+                password: '',
+                type: 1
+            },
+
+            validateState: {
+                email: {
+                    state: true,
+                    message: ''
+                },
+                password: {
+                    state: true,
+                    message: ''
+                },
+            },
+        }
+    },
+    methods: {
+
+        loginUserByEmail() {
+            if (this.validateForm()) {
+                axios
+                    .post(URLCONST.loginAPI, this.formValue)
+                    .then((response) => {
+                        console.log(response)
+                        if (response.status == 200 && response?.data) {
+                            const result = response.data;
+                            if (result.status && result.token) {
+                                // register success
+                                setAuthenticate(result.token)
+                                window.location.assign('/chat')
+                            } else {
+                                // register fail
+                                toast(result.result, {
+                                    autoClose: 1000,
+                                }); // ToastOptions
+                                removeLocalStorage(LOCALSTORAGE_USERSESSION)
+                            }
+                        } else {
+                            removeLocalStorage(LOCALSTORAGE_USERSESSION)
+                        }
+                    })
+            }
+        },
+        validateForm() {
+            this.validateState.email = ValidateUtil.validateEmail(this.formValue.email);
+            this.validateState.password = ValidateUtil.validatePassword(this.formValue.password);
+
+            return this.validateState.email.state && this.validateState.password.state;
+        },
+    },
+}
+</script>
+
+
 <template>
     <div class="container mx-auto mt-[40px] px-[69px] w-screen h-screen">
         <a class="login-logo  md:absolute top-[40px] left-[91px]" href="/">
@@ -22,11 +101,13 @@
 
                 <div class="input-group-login mt-[48px]">
                     <span>Email Address</span>
-                    <input placeholder="chrisvaccaro@gmail.com" />
+                    <input type="text" :class="!validateState.email.state && 'validate-error'" v-model="formValue.email"
+                        @input="validateState.email.state = true" placeholder="chrisvaccaro@gmail.com" />
                 </div>
                 <div class="input-group-login mt-[24px]">
                     <span>Password</span>
-                    <input type="password" />
+                    <input type="password" :class="!validateState.password.state && 'validate-error'"
+                        @input="validateState.password.state = true" v-model="formValue.password" />
                 </div>
                 <div class="flex justify-between w-full mt-[14px]">
                     <div class="flex items-center mb-4">
@@ -39,7 +120,7 @@
                     <div>Forgot password?</div>
                 </div>
 
-                <div class="btn-login mt-[44px]">Login</div>
+                <div class="btn-login mt-[44px]" @click="loginUserByEmail">Login</div>
                 <div class="mt-[16px] title-signup">Don't have an account? <a class="blue-a" href="/register">Create free
                         account</a></div>
             </div>
@@ -149,5 +230,9 @@
     font-style: normal;
     font-weight: 600;
     line-height: 22px;
+}
+
+.input-group-login input.validate-error {
+    border: 1px solid rgb(255, 60, 0);
 }
 </style>

@@ -6,6 +6,8 @@ import TermsPage from "@/views/TermsPage.vue";
 import PrivacyPage from "@/views/PrivacyPage.vue";
 import ChatPage from "@/views/ChatPage.vue";
 import MarketPlace from "@/views/MarketPlace.vue";
+import Tools from "@/views/Tools.vue";
+import Encyclopedia from "@/views/Encyclopedia.vue";
 
 
 const routes = [
@@ -44,6 +46,16 @@ const routes = [
     path: "/marketplace",
     name: "marketplace",
     component: MarketPlace,
+  },
+  {
+    path: "/tools",
+    name: "tools",
+    component: Tools,
+  },
+  {
+    path: "/encyclopedia",
+    name: "encyclopedia",
+    component: Encyclopedia,
   },
 ];
 

@@ -64,46 +64,46 @@ export default {
                     image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
                 },
                 {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                    image: '@/assets/images/product/2.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/3.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/4.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/5.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/6.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/7.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/8.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/9.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/10.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/11.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                },
+                {
+                    image: '@/assets/images/product/12.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
                 },
                 {
                     image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
                 },
                 {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                    image: '@/assets/images/product/2.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
                 },
                 {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
-                },
-                {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                    image: '@/assets/images/product/3.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
                 },
             ]
         }
@@ -115,7 +115,7 @@ export default {
 
 <template>
     <div class="w-screen w-full">
-        <Header />
+        <Header :pageName="'marketplace'"/>
         <div class="ratinget-content mt-[36px] px-[50px]">
             <span class="ratinget-title">Marketplace</span>
             <div class="w-full">

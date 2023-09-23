@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             isSidebarShow: true,
-            listType: 0, 
+            productMenuType: 0,
             filterData: [
                 {
                     title: 'Title1',
@@ -118,7 +118,22 @@ export default {
         <Header />
         <div class="ratinget-content mt-[36px] px-[50px]">
             <span class="ratinget-title">Marketplace</span>
-
+            <div class="w-full">
+                <div class="view-tools float-right">
+                    <div class="sort-button flex gap-[4px]">
+                        <span>Sort by</span>
+                        <img src="@/assets/images/ico/drop-arrow.png" class="ico-24" />
+                    </div>
+                    <div class="view-type">
+                        <div class="ico-menu-card ico-32 pointer" :class="this.productMenuType == 0 && 'active'"
+                            @click="this.productMenuType = 0">
+                        </div>
+                        <div class="ico-menu-list ico-32 pointer" :class="this.productMenuType == 1 && 'active'"
+                            @click="this.productMenuType = 1">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="product-content mt-[60px] flex justify-between">
                 <div id="sideNav" class="product-filter lg:flex hidden w-64 h-screen rounded-none border-none mr-[50px]"
                     :class="isSidebarShow && 'flex'">
@@ -146,9 +161,25 @@ export default {
                 </div>
 
 
-                <div class="product-list grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mx-auto">
+                <div v-if="productMenuType == 0"
+                    class="product-list grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mx-auto">
                     <div class="product-item col-span-1 p-0 m-0" v-for="(e, i) in productList" :key="i">
                         <img src="@/assets/images/product/1.png" />
+                        <div class="product-info w-full">
+                            <div class="info-group">
+                                <div class="product-title">{{ e.title }}</div>
+                                <div class="product-price mt-[2px]">$ {{ e.price }}</div>
+                                <StarRating class="mt-[4px]" read-only v-bind:star-size="15" v-bind:increment="0.5"
+                                    v-bind:rating="e.rating" />
+                            </div>
+
+                            <div class="btn-buy pointer">Buy</div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="productMenuType == 1" class="product-list card mx-auto w-full">
+                    <div class="product-item mt-[8px]" v-for="(e, i) in productList" :key="i">
+                        <img src="@/assets/images/product/1.png" class="max-w-[120px]" />
                         <div class="product-info w-full">
                             <div class="info-group">
                                 <div class="product-title">{{ e.title }}</div>
@@ -212,25 +243,27 @@ export default {
     align-items: flex-end;
 }
 
-.product-list {
+.product-list.grid {
     border-radius: 10px;
     overflow: hidden;
 }
 
-.product-list .product-item {
+.product-list.grid .product-item {
     display: flex;
     flex-direction: column;
     height: fit-content;
     border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.product-list .product-item img {
+
+
+.product-list.grid .product-item img {
     height: auto;
     aspect-ratio: 31/28;
 }
 
 
-.product-list .product-info {
+.product-list.grid .product-info {
     width: 100%;
     display: flex;
     align-items: center;
@@ -238,9 +271,27 @@ export default {
     padding: 20px 24px;
 }
 
-.product-list .product-info .info-group {
+
+.product-list.grid .product-info .info-group {
     display: flex;
     flex-direction: column;
+}
+
+
+.product-list.card .product-item {
+    display: flex;
+    height: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.product-list.card .product-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
 }
 
 .info-group .product-title {
@@ -274,5 +325,38 @@ export default {
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
+}
+
+.sort-button {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid #585979;
+}
+
+.sort-button span {
+    color: #9AA6AC;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.084px;
+}
+
+.view-tools {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.view-type {
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    overflow: hidden;
 }
 </style>

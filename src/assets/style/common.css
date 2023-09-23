@@ -107,3 +107,20 @@
 .custom-scroll-hide::-webkit-scrollbar {
     height: 0px;
 }
+
+
+.ico-menu-card {
+    background-image: url('@/assets/images/ico/ico-menu-card.png');
+}
+
+.ico-menu-card.active {
+    background-image: url('@/assets/images/ico/ico-menu-card-active.png');
+}
+
+.ico-menu-list {
+    background-image: url('@/assets/images/ico/ico-menu-list.png');
+}
+
+.ico-menu-list.active {
+    background-image: url('@/assets/images/ico/ico-menu-list-active.png');
+}

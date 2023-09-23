@@ -117,7 +117,7 @@ export default {
     <div class="w-screen w-full">
         <Header />
         <div class="ratinget-content mt-[36px] px-[50px]">
-            <span class="ratinget-title">ratingetplace</span>
+            <span class="ratinget-title">Marketplace</span>
 
             <div class="product-content mt-[60px] flex justify-between">
                 <div id="sideNav" class="product-filter lg:flex hidden w-64 h-screen rounded-none border-none mr-[50px]"

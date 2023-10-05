@@ -1,4 +1,5 @@
 <script>
+import { getLocalStorage } from '@/library/auth.js';
 import Header from "@/views/layout/Header.vue"
 import Footer from "@/views/layout/Footer.vue"
 import ChatDetail from "@/components/chatbot/ChatDetail.vue"
@@ -16,16 +17,24 @@ export default {
     created: function () {
     },
     mounted() {
+        this.userToken = getLocalStorage();
+        if (!this.userToken) {
+            window.location.assign('/')
+        }
     },
     unmounted() {
     },
     data() {
         return {
             CHATCONST: CHATCONST,
-            contentType: CHATCONST.DETAILVIEW
+            contentType: CHATCONST.DETAILVIEW,
+            mainContent: 'hello'
         }
     },
     methods: {
+        setMainContent(message) {
+            this.mainContent = message;
+        }
     },
 }
 </script>
@@ -37,9 +46,10 @@ export default {
             direct message history with
             <font class="text-[#A5AAB1]">us</font>.
         </span>
-        <div class="chat-content grid grid-cols-3 md: gap-8 px-[50px] " :class="contentType == CHATCONST.DASHBOARD ? 'mt-[20px]' : 'mt-[50px]'">
-            <ChatDetail :pageType="contentType" class="col-span-3 md:col-span-2 mb-3"/>
-            <ChatBox class="col-span-3 md:col-span-1 mb-3" />
+        <div class="chat-content grid grid-cols-5 md: gap-8 px-[50px] "
+            :class="contentType == CHATCONST.DASHBOARD ? 'mt-[20px]' : 'mt-[50px]'">
+            <ChatDetail :mainContent="mainContent" :pageType="contentType" class="col-span-3 md:col-span-3 mb-3" />
+            <ChatBox @setMainContent="setMainContent" class="col-span-2 md:col-span-2 mb-3" />
         </div>
         <Footer class="mt-[150px]" />
     </div>

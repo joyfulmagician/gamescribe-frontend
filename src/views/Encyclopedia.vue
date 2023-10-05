@@ -25,7 +25,9 @@ export default {
 <template>
     <div class="w-screen w-full">
         <Header :pageName="'encyclopedia'" />
-        
+        <div class="px-[50px]">
+            Encyclopedia
+        </div>
         <Footer class="mt-[150px]" />
     </div>
 </template>

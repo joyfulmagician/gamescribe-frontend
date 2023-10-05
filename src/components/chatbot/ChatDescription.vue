@@ -2,6 +2,9 @@
 import { CHATCONST } from "@/const/value.js"
 
 export default {
+    props: {
+        mainContent: String
+    },
     components: {
     },
     name: 'ChatDescription',
@@ -52,12 +55,17 @@ Venture forth, for encountering the Draegonspire will test your courage, wit, an
                 <span class="key">Monster:</span>
                 <span class="value">They Eye-Stalker:</span>
             </div>
-            <div class="header-item btn-edit" @click="editState = true">
+            <div v-if="!editState" class="header-item btn-edit" @click="editState = true">
                 <img src="@/assets/images/ico/ico-edit.png" class="ico-16" />
                 <span class="key">Edit</span>
             </div>
+            
+            <div v-else class="header-item btn-edit" @click="editState = false">
+                <img src="@/assets/images/ico/ico-edit.png" class="ico-16" />
+                <span class="key">Save</span>
+            </div>
         </div>
-        <textarea class="desc-content custom-scroll-small scroll-div-y" :class="editState && 'edit-active'" v-bind:readonly="!editState" v-html="descContent"></textarea>
+        <textarea class="desc-content custom-scroll-small scroll-div-y" :class="editState && 'edit-active'" v-bind:readonly="!editState" v-html="mainContent"></textarea>
     </div>
 </template>
 

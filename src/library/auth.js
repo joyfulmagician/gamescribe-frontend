@@ -15,11 +15,18 @@ const setLocalStorage = (key, value) => {
 }
 
 const getLocalStorage = (key) => {
+    if (!key) {
+        key = LOCALSTORAGE_USERSESSION
+    }
     const result = localStorage.getItem(key);
     return result ? JSON.parse(localStorage.getItem(key) || '') : null;
 }
 
 const removeLocalStorage = (key) => {
+    debugger;
+    if (!key) {
+        key = LOCALSTORAGE_USERSESSION
+    }
     localStorage.removeItem(key);
 }
 
@@ -31,4 +38,4 @@ const setAxiosHeader = (token) => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
-export { setAuthenticate, removeLocalStorage }
+export { setAuthenticate, removeLocalStorage, getLocalStorage }

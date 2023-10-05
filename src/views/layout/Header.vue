@@ -1,4 +1,5 @@
 <script>
+import { getLocalStorage, removeLocalStorage } from '@/library/auth.js';
 
 export default {
     props: {
@@ -8,14 +9,21 @@ export default {
     created: function () {
     },
     mounted() {
+        this.userToken = getLocalStorage();
     },
     unmounted() {
     },
     data() {
         return {
+            userToken: ''
         }
     },
+
     methods: {
+        logoutUser() {
+            removeLocalStorage();
+            window.location.reload();
+        }
     },
 }
 </script>
@@ -31,7 +39,11 @@ export default {
                 href="/encyclopedia">Encyclopedia</a>
             <a class="nav-item pointer" :class="pageName == 'tools' && 'active'" href="/tools">Tools</a>
         </div>
-        <a class="btn-signup pointer" href="/register">Sign Up Free</a>
+        <div v-if="userToken" class="flex">
+            <a class="btn-signup pointer" href="/chat">Chat</a>
+            <div class="btn-signup pointer ml-3" @click="logoutUser">Logout</div>
+        </div>
+        <a v-else class="btn-signup pointer" href="/register">Sign Up Free</a>
     </div>
 </template>
 

@@ -61,7 +61,7 @@ export default {
             ],
             productList: [
                 {
-                    image: '@/assets/images/product/1.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
+                    image: '@/assets/images/product/1.png', title: 'Ti1tle', price: 599, rating: 3.5, cnt: 243
                 },
                 {
                     image: '@/assets/images/product/2.png', title: 'Title', price: 599, rating: 3.5, cnt: 243
@@ -109,6 +109,7 @@ export default {
         }
     },
     methods: {
+        
     },
 }
 </script>

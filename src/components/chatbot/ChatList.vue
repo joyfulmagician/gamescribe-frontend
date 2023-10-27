@@ -12,16 +12,15 @@ export default {
     },
 
     mounted: function () {
-        this.addFirstSuggestionMessage();
     },
 
     watch: {
     },
 
     methods: {
-        addFirstSuggestionMessage() {
-            this.messageList.push(this.createSystemMessage('What would you like to make?'))
-            this.messageList.push(this.createUserMessage('What  you like to make?'))
+        addFirstSuggestionMessage(msg) {
+            this.messageList = []
+            this.messageList.push(this.createSystemMessage(msg))
         },
 
         createSystemMessage(msg) {
@@ -131,7 +130,7 @@ export default {
 
 .message-item-content-text {
     color: #D1D1F5;
-    font-family: Open Sans;
+    font-family: 'Open Sans' sans-serif;
     font-size: 13px;
     font-style: normal;
     font-weight: 400;

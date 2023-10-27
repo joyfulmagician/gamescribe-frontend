@@ -1,11 +1,14 @@
 <script>
 
+import ChatCategory from "@/components/chatbot/ChatCategory.vue"
 import ChatInput from "@/components/chatbot/ChatInput.vue"
 import ChatList from "@/components/chatbot/ChatList.vue"
-import { URLCONST } from '@/const/url.js';
+import { URLCONST } from '@/const/url.js'
+import { CHAT_CATEGORY } from '@/const/value.js'
 import axios from 'axios'
 export default {
     components: {
+        ChatCategory,
         ChatInput,
         ChatList
     },
@@ -18,6 +21,7 @@ export default {
     },
     data() {
         return {
+            CHAT_CATEGORY: CHAT_CATEGORY
         }
     },
     methods: {
@@ -49,6 +53,22 @@ export default {
                     } else {
                     }
                 })
+        },
+
+        selectedCategory(categoryId) {
+            const _this = this;
+            if( categoryId == CHAT_CATEGORY.MONSTER ) {
+                _this.$refs.chatlist.addFirstSuggestionMessage("You selected monster and I'm createing a new monster description for your review on the left")
+            } else if( categoryId == CHAT_CATEGORY.CHARACTER ) {
+                _this.$refs.chatlist.addFirstSuggestionMessage("Please choose a name for your character. I suggest you to use one of those or you can write it by yourself")
+            } else if( categoryId == CHAT_CATEGORY.SPELL ) {
+                _this.$refs.chatlist.addFirstSuggestionMessage("This is SPELL system message")
+            } else if( categoryId == CHAT_CATEGORY.BACKGROUND ) {
+                _this.$refs.chatlist.addFirstSuggestionMessage("This is BACKGROUND system message")
+            } else {
+                _this.$refs.chatlist.addFirstSuggestionMessage("")
+            }
+            _this.$emit("selectedCategory", categoryId)
         }
     },
 }
@@ -56,6 +76,7 @@ export default {
 
 <template>
     <div class="chatbot-panel">
+        <ChatCategory @selectedCategory="selectedCategory" ref="chatcategory" />
         <ChatList ref="chatlist" />
         <ChatInput ref="chatinput" @sendMessage="sendMessage" />
     </div>

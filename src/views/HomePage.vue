@@ -13,11 +13,13 @@ export default {
     created: function () {
     },
     mounted() {
+
     },
     unmounted() {
     },
     data() {
         return {
+            
         }
     },
     methods: {

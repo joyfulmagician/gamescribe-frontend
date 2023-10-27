@@ -27,13 +27,20 @@ export default {
     data() {
         return {
             CHATCONST: CHATCONST,
-            contentType: CHATCONST.DETAILVIEW,
-            mainContent: 'hello'
+            contentType: CHATCONST.DASHBOARD,
+            mainContent: 'Introducing the Dragonspire....'
         }
     },
     methods: {
         setMainContent(message) {
             this.mainContent = message;
+        },
+        selectedCategory(categoryId) {
+            if(parseInt(categoryId) < 0 ) {
+                this.contentType = CHATCONST.DASHBOARD
+            } else {
+                this.contentType = CHATCONST.DETAILVIEW
+            }
         }
     },
 }
@@ -42,14 +49,18 @@ export default {
 <template>
     <div class="w-screen w-full">
         <Header />
-        <span v-if="contentType == CHATCONST.DASHBOARD" class="chat-begin-title px-[50px] ">This is the beginning of your
+        <span class="chat-begin-title px-[40px] ">This is the beginning of your
             direct message history with
             <font class="text-[#A5AAB1]">us</font>.
         </span>
         <div class="chat-content grid grid-cols-5 md: gap-8 px-[50px] "
-            :class="contentType == CHATCONST.DASHBOARD ? 'mt-[20px]' : 'mt-[50px]'">
+            :class="contentType == CHATCONST.DASHBOARD ? 'mt-[20px]' : 'mt-[30px]'">
             <ChatDetail :mainContent="mainContent" :pageType="contentType" class="col-span-3 md:col-span-3 mb-3" />
-            <ChatBox @setMainContent="setMainContent" class="col-span-2 md:col-span-2 mb-3" />
+            <div v-if="contentType == CHATCONST.DASHBOARD" class="chat-dashboard-left-side col-span-3 md:col-span-3 mb-3">
+                <span class="chat-dashboard-normal-title">Unleash Your <span class="chat-dashboard-color-title">Story</span></span>
+                <img class="max-h-[50vh] mt-20" src="@/assets/images/chat_dashboard.png" />
+            </div>
+            <ChatBox @selectedCategory="selectedCategory" @setMainContent="setMainContent" class="col-span-2 md:col-span-2 mb-3" />
         </div>
         <Footer class="mt-[150px]" />
     </div>
@@ -59,6 +70,27 @@ export default {
 @import '@/assets/style/common.css';
 
 .chat-content {
+}
+
+.chat-dashboard-left-side {
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+}
+
+.chat-dashboard-normal-title {
+    color: var(--neutral-0, #FFF);
+    font-family: 'Varela', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    align-items: center;
+}
+
+.chat-dashboard-color-title {
+    color: var(--neutral-0, #7173FA);
 }
 
 .chat-begin-title {

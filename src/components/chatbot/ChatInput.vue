@@ -23,8 +23,9 @@ export default {
     watch: {
         inputText: {
             handler(newValue) {
-                this.$emit('searchChannel', newValue);
-                this.adjustTextareaHeight()
+                const _this = this;
+                _this.$emit('searchChannel', newValue);
+                _this.adjustTextareaHeight()
             },
             immediate: true,
         }
@@ -40,9 +41,10 @@ export default {
 
         sendChatText(e) {
             e.preventDefault();
-            var text = this.$refs.chat_input.value;
+            const _this = this;
+            var text = _this.$refs.chat_input.value;
             if (text) {
-                this.$emit('sendMessage', text);
+                _this.$emit('sendMessage', text);
                 // this.inputText = '';
             }
         },

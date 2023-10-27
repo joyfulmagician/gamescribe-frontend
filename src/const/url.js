@@ -1,5 +1,5 @@
-// const baseUrl = 'https://gamescribe.kneeshaw-developments.com';
-const baseUrl = 'http://localhost:5000/';
+const baseUrl = 'https://gamescribe.kneeshaw-developments.com';
+// const baseUrl = 'http://localhost:5000/';
 
 const URLCONST = {
     registerAPI: baseUrl + '/signup',

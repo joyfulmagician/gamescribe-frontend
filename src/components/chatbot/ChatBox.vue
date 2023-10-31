@@ -34,16 +34,38 @@ export default {
 
         getChatMainContent(msg) {
             const _this = this;
-            this.getChatMainChunkAPI(msg, function (chunk) {
+            _this.getChatMainChunkAPI(msg, function (chunk) {
                 const message = chunk.result;
                 _this.$emit('setMainContent', message);
+            });
+
+            _this.getAIQuestion(msg, function(chunk) {
+                const question_msg = chunk.result;
+                console.log("question_msg", question_msg);
+                _this.$refs.chatlist.addMessageList(true, question_msg);
             })
+        },
+
+        getAIQuestion(text, callback) {
+            var sendData = {
+                user_input: text
+            }
+            axios
+                .post(URLCONST.generateQueestionAPI, sendData)
+                .then((response) => {
+                    if (response.status == 200 && response?.data) {
+                        const result = response.data;
+                        callback(result);
+                    } else {
+                    }
+                })
         },
 
         getChatMainChunkAPI(text, callback) {
             var sendData = {
                 user_input: text
             }
+
             axios
                 .post(URLCONST.generateContentAPI, sendData)
                 .then((response) => {

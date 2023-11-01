@@ -18,13 +18,7 @@ export default {
         return {
             CHATCONST: CHATCONST,
             editState: false,
-            descContent: `Introducing the Draegonspire, a fearsome and majestic creature that prowls the shadowed realms of your game's world. Standing at a towering height with scales as dark as midnight, the Draegonspire commands both awe and terror. Its eyes, blazing orbs of molten gold, possess an uncanny intelligence that pierces through the deepest corners of your soul.\n\
-
-With wings that stretch wide and powerful, the Draegonspire dominates the skies, casting an ominous silhouette as it soars. Its talons, sharp as obsidian blades, can tear through even the hardiest of defenses, making it a formidable adversary. Yet, it's not just its physical prowess that makes the Draegonspire a creature to be reckoned with. Legends speak of its ability to manipulate the very elements, conjuring storms that darken the sun and crack the earth.\n
-
-But within this terrifying exterior lies a complexity that challenges expectations. Whispers carried by the wind claim that the Draegonspire is a guardian of forgotten knowledge, a sentinel of ancient secrets buried deep within the heart of the world. Some say it can be appeased with offerings of precious gems and rare herbs, and in return, it imparts hidden wisdom to those who prove themselves worthy.\n
-
-Venture forth, for encountering the Draegonspire will test your courage, wit, and strategy. Will you face it as an adversary, driven by the desire to conquer, or will you seek to unravel the enigma it embodies and uncover the truths that lie beneath its majestic exterior? The choice is yours, as you navigate the uncharted territories where legends and reality intertwine.`
+            descContent: ``
         }
     },
     methods: {
@@ -47,14 +41,6 @@ Venture forth, for encountering the Draegonspire will test your courage, wit, an
                 <span class="key">Monster:</span>
                 <span class="value">They Eye-Stalker:</span>
             </div>
-            <div class="header-item">
-                <span class="key">Monster:</span>
-                <span class="value">They Eye-Stalker:</span>
-            </div>
-            <div class="header-item">
-                <span class="key">Monster:</span>
-                <span class="value">They Eye-Stalker:</span>
-            </div>
             <div v-if="!editState" class="header-item btn-edit" @click="editState = true">
                 <img src="@/assets/images/ico/ico-edit.png" class="ico-16" />
                 <span class="key">Edit</span>
@@ -65,12 +51,95 @@ Venture forth, for encountering the Draegonspire will test your courage, wit, an
                 <span class="key">Save</span>
             </div>
         </div>
-        <textarea class="desc-content custom-scroll-small scroll-div-y" :class="editState && 'edit-active'" v-bind:readonly="!editState" v-html="mainContent"></textarea>
+
+
+        <div v-html="mainContent">
+        </div>
+
+        <!-- <textarea class="desc-content custom-scroll-small scroll-div-y" :class="editState && 'edit-active'" v-bind:readonly="!editState" v-html="mainContent"></textarea> -->
     </div>
 </template>
 
-<style scoped>
+<style>
 @import '@/assets/style/common.css';
+
+.monster-title {
+    color: var(--neutral-0, #FFF);
+    font-family: 'Merriweather', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.64px;
+    text-transform: capitalize;
+}
+
+.monster-subtitle {
+    color: var(--neutral-0, #FFF);
+    font-family: 'Merriweather', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 133.333% */
+    letter-spacing: 0.36px;
+}
+
+.section-divider {
+    border-top: 2px solid rgba(113, 115, 250, 0.60);
+}
+
+.section-body {
+    margin-top: 45px;
+}
+
+.section-title {
+    color: var(--neutral-0, #FFF);
+    font-family: "Merriweather", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 100% */
+    letter-spacing: 0.48px;
+    text-transform: uppercase;
+}
+
+.stat-title {
+    color: var(--neutral-0, #FFF);
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px; /* 133.333% */
+    letter-spacing: 0.36px;
+}
+
+.stat-subtitle {
+    color: var(--neutral-0, #FFF);
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    line-height: 28px; /* 133.333% */
+    letter-spacing: 0.36px;
+}
+
+.ability {
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    border-right: 2px solid rgba(113, 115, 250, 0.45);
+    padding-right: 10px;
+}
+
+.ability-label {
+    text-transform: uppercase;
+}
+
+.ability:last-child {
+    border-right: none;
+}
+.action-title {
+    margin-right: 15px;
+}
 
 .chat-desc {
     padding: 16px 24px;

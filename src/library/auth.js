@@ -23,7 +23,6 @@ const getLocalStorage = (key) => {
 }
 
 const removeLocalStorage = (key) => {
-    debugger;
     if (!key) {
         key = LOCALSTORAGE_USERSESSION
     }

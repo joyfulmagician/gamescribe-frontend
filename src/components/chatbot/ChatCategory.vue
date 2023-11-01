@@ -37,7 +37,7 @@ export default {
         <div class="chat-category-question">
             What would you like to make?
         </div>
-        <div class="flex gap-1 mt-5">
+        <div class="flex gap-1 mt-5 mb-5">
             <ChatCategoryItem @itemSelected="handleCategorySelection" :clickedId="categoryId" :categoryId="CHAT_CATEGORY.CHARACTER" categoryTitle="Character" />
             <ChatCategoryItem @itemSelected="handleCategorySelection" :clickedId="categoryId" :categoryId="CHAT_CATEGORY.MONSTER" categoryTitle="Monster" />
             <ChatCategoryItem @itemSelected="handleCategorySelection" :clickedId="categoryId" :categoryId="CHAT_CATEGORY.SPELL" categoryTitle="Spell" />

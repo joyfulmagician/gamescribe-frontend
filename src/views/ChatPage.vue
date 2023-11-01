@@ -28,7 +28,7 @@ export default {
         return {
             CHATCONST: CHATCONST,
             contentType: CHATCONST.DASHBOARD,
-            mainContent: 'Introducing the Dragonspire....'
+            mainContent: ''
         }
     },
     methods: {

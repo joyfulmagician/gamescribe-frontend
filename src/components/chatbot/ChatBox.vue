@@ -21,34 +21,70 @@ export default {
     },
     data() {
         return {
-            CHAT_CATEGORY: CHAT_CATEGORY
+            CHAT_CATEGORY: CHAT_CATEGORY,
+            messageList: []
         }
     },
     methods: {
-        sendMessage(msg) {
-            this.$refs.chatinput.clearInput();
-            this.$refs.chatlist.addMessageList(false, msg);
-
-            this.getChatMainContent(msg);
+        createSystemMessage(msg) {
+            return {
+                role: 'system',
+                content: msg
+            }
         },
 
-        getChatMainContent(msg) {
+        createUserMessage(msg) {
+            return {
+                role: 'user',
+                content: msg
+            }
+        },
+
+        addFirstSuggestionMessage(msg) {
+            this.messageList = []
+            this.messageList.push(this.createSystemMessage(msg))
+        },
+
+        addMessageList(type, msg) {
+            if (type) {
+                this.messageList.push(this.createSystemMessage(msg));
+            } else {
+                this.messageList.push(this.createUserMessage(msg));
+            }
+
+            this.$refs.chatlist.scrolltoChatEnd();
+
+        },
+
+        sendMessage(msg) {
+            this.$refs.chatinput.clearInput();
+            this.$refs.chatinput.setLoadingState(true);
+            this.$emit('setLoadingState', true);
+            this.addMessageList(false, msg);
+
+            this.getChatMainContent();
+        },
+
+        getChatMainContent() {
             const _this = this;
-            _this.getChatMainChunkAPI(msg, function (chunk) {
+            _this.getChatMainChunkAPI(function (chunk) {
                 const message = chunk.result;
                 _this.$emit('setMainContent', message);
+                _this.$emit('setLoadingState', false);
+                _this.$refs.chatinput.setLoadingState(false);
+                _this.$refs.chatinput.setFocusToInput()
             });
 
-            _this.getAIQuestion(msg, function(chunk) {
+            _this.getAIQuestion(function(chunk) {
                 const question_msg = chunk.result;
-                console.log("question_msg", question_msg);
-                _this.$refs.chatlist.addMessageList(true, question_msg);
+                _this.addMessageList(true, question_msg);
+                _this.$refs.chatinput.setFocusToInput()
             })
         },
 
-        getAIQuestion(text, callback) {
+        getAIQuestion(callback) {
             var sendData = {
-                user_input: text
+                message_list: this.messageList
             }
             axios
                 .post(URLCONST.generateQueestionAPI, sendData)
@@ -61,9 +97,9 @@ export default {
                 })
         },
 
-        getChatMainChunkAPI(text, callback) {
+        getChatMainChunkAPI(callback) {
             var sendData = {
-                user_input: text
+                message_list: this.messageList
             }
 
             axios
@@ -80,17 +116,18 @@ export default {
         selectedCategory(categoryId) {
             const _this = this;
             if( categoryId == CHAT_CATEGORY.MONSTER ) {
-                _this.$refs.chatlist.addFirstSuggestionMessage("You selected monster and I'm createing a new monster description for your review on the left")
+                this.addFirstSuggestionMessage("You selected monster and I'm createing a new monster description for your review on the left")
             } else if( categoryId == CHAT_CATEGORY.CHARACTER ) {
-                _this.$refs.chatlist.addFirstSuggestionMessage("Please choose a name for your character. I suggest you to use one of those or you can write it by yourself")
+                this.addFirstSuggestionMessage("Please choose a name for your character. I suggest you to use one of those or you can write it by yourself")
             } else if( categoryId == CHAT_CATEGORY.SPELL ) {
-                _this.$refs.chatlist.addFirstSuggestionMessage("This is SPELL system message")
+                this.addFirstSuggestionMessage("This is SPELL system message")
             } else if( categoryId == CHAT_CATEGORY.BACKGROUND ) {
-                _this.$refs.chatlist.addFirstSuggestionMessage("This is BACKGROUND system message")
+                this.addFirstSuggestionMessage("This is BACKGROUND system message")
             } else {
-                _this.$refs.chatlist.addFirstSuggestionMessage("")
+                this.addFirstSuggestionMessage("")
             }
             _this.$emit("selectedCategory", categoryId)
+            _this.$refs.chatinput.setFocusToInput()
         }
     },
 }
@@ -99,8 +136,8 @@ export default {
 <template>
     <div class="chatbot-panel">
         <ChatCategory @selectedCategory="selectedCategory" ref="chatcategory" />
-        <ChatList ref="chatlist" />
-        <ChatInput ref="chatinput" @sendMessage="sendMessage" />
+        <ChatList ref="chatlist" :messageList="messageList" />
+        <ChatInput ref="chatinput" @sendMessage="sendMessage"/>
     </div>
 </template>
 

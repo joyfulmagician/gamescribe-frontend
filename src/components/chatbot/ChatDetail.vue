@@ -6,7 +6,8 @@ import ChatDescription from "@/components/chatbot/ChatDescription.vue"
 export default {
     props: {
         pageType: Number,
-        mainContent: String
+        mainContent: String,
+        isContentGenerating: Boolean
     },
     components: {
         ChatEmpty,
@@ -32,7 +33,7 @@ export default {
 <template>
     <div>
         <ChatEmpty v-if="pageType && CHATCONST.DASHBOARD" />
-        <ChatDescription :mainContent="mainContent" v-else-if="pageType && CHATCONST.DETAILVIEW" class="chat-description" />
+        <ChatDescription :mainContent="mainContent" :isContentGenerating="isContentGenerating" v-else-if="pageType && CHATCONST.DETAILVIEW" class="chat-description" />
     </div>
 </template>
 

@@ -119,15 +119,15 @@ export default {
         selectedCategory(categoryId) {
             const _this = this;
             if( categoryId == CHAT_CATEGORY.MONSTER ) {
-                this.addFirstSuggestionMessage("You selected monster and I'm createing a new monster description for your review on the left")
+                this.addFirstSuggestionMessage("what kind of monster are you looking to bring into existence today? Your choices will shape a creature that will haunt the realms of your world")
             } else if( categoryId == CHAT_CATEGORY.CHARACTER ) {
-                this.addFirstSuggestionMessage("Please choose a name for your character. I suggest you to use one of those or you can write it by yourself")
+                this.addFirstSuggestionMessage("Now, tell me, what kind of character are you looking to craft today? Your choices will shape a legend in the making!")
             } else if( categoryId == CHAT_CATEGORY.SPELL ) {
-                this.addFirstSuggestionMessage("This is SPELL system message")
+                this.addFirstSuggestionMessage("Mystical Magics! let's cast a spell! What type of spell do you want to cast?")
             } else if( categoryId == CHAT_CATEGORY.BACKGROUND ) {
-                this.addFirstSuggestionMessage("This is BACKGROUND system message")
+                this.addFirstSuggestionMessage("History repeats! Let's see where you come from?")
             } else {
-                this.addFirstSuggestionMessage("")
+                this.addFirstSuggestionMessage("Let's create!")
             }
             _this.$emit("selectedCategory", categoryId)
             _this.$refs.chatinput.setFocusToInput()

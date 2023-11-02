@@ -28,12 +28,17 @@ export default {
         return {
             CHATCONST: CHATCONST,
             contentType: CHATCONST.DASHBOARD,
-            mainContent: ''
+            mainContent: '',
+            isContentGenerating: false
         }
     },
     methods: {
         setMainContent(message) {
-            this.mainContent = message;
+            if( message != "" )
+                this.mainContent = message;
+        },
+        setLoadingState(state) {
+            this.isContentGenerating = state;
         },
         selectedCategory(categoryId) {
             if(parseInt(categoryId) < 0 ) {
@@ -55,12 +60,12 @@ export default {
         </span>
         <div class="chat-content grid grid-cols-5 md: gap-8 px-[50px] "
             :class="contentType == CHATCONST.DASHBOARD ? 'mt-[20px]' : 'mt-[30px]'">
-            <ChatDetail :mainContent="mainContent" :pageType="contentType" class="col-span-3 md:col-span-3 mb-3" />
+            <ChatDetail :mainContent="mainContent" :isContentGenerating="isContentGenerating" :pageType="contentType" class="col-span-3 md:col-span-3 mb-3" />
             <div v-if="contentType == CHATCONST.DASHBOARD" class="chat-dashboard-left-side col-span-3 md:col-span-3 mb-3">
                 <span class="chat-dashboard-normal-title">Unleash Your <span class="chat-dashboard-color-title">Story</span></span>
                 <img class="max-h-[50vh] mt-20" src="@/assets/images/chat_dashboard.png" />
             </div>
-            <ChatBox @selectedCategory="selectedCategory" @setMainContent="setMainContent" class="col-span-2 md:col-span-2 mb-3" />
+            <ChatBox @selectedCategory="selectedCategory" @setLoadingState="setLoadingState" @setMainContent="setMainContent" class="col-span-2 md:col-span-2 mb-3" />
         </div>
         <Footer class="mt-[150px]" />
     </div>

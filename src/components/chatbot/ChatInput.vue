@@ -8,16 +8,16 @@ export default {
     data() {
         return {
             inputText: "",
-            placeholderText: 'create...',
-            placeHolderToSumit: 'create...',
+            placeholderText: 'Write a message...', 
             inputHoverState: false,
-            isInputLoadingShow: false,
-            textareaHeight: 'auto'
+            textareaHeight: 'auto',
+            isContentGenerating: false
         }
     },
 
     mounted: function () {
         this.adjustTextareaHeight()
+        this.setFocusToInput()
     },
 
     watch: {
@@ -45,20 +45,16 @@ export default {
             var text = _this.$refs.chat_input.value;
             if (text) {
                 _this.$emit('sendMessage', text);
-                // this.inputText = '';
             }
         },
 
-        showInputLoading() {
-            this.isInputLoadingShow = true;
-        },
-
-        hideInputLoading() {
-            this.isInputLoadingShow = false;
+        setLoadingState(state) {
+            this.isContentGenerating = state
         },
 
         setFocusToInput() {
-            this.$refs.chat_input.focus();
+            if( this.$refs.chat_input )
+                this.$refs.chat_input.focus();
         },
 
         clearInput() {
@@ -94,24 +90,20 @@ export default {
 
 <template>
     <div class="scribe-chat-input">
-        <div class="scribe-textarea-panel">
+        <div class="scribe-textarea-panel" v-if="!isContentGenerating">
             <div class="flex items-end gap-[12px]">
                 <textarea ref="chat_input" class="scribe-custom-textarea scroll-div-y custom-scroll-small tab-tag"
                     :class="{ 'has-value': inputText }" :style="{ height: textareaHeight }" v-model="inputText"
-                    @keydown="handleKeyDownInput" @focus="inputHoverState = true" @blur="inputHoverState = false"></textarea>
+                    @keydown="handleKeyDownInput" @focus="true" @blur="inputHoverState = false"></textarea>
                 <textarea ref="chat_input_hidden" class="scribe-custom-textarea-hidden" v-model="inputText"></textarea>
                 <img class="ico-24 pointer" src="@/assets/images/ico/ico-send.png" @click="sendChatText"/>
             </div>
-            <div class="scribe-input-loading-group" v-if="isInputLoadingShow && !inputText">
-                <span>scribe is Writing</span>
-                <div class="scribe-input-loading ml-16px" data-title="dot-flashing">
-                    <div class="stage">
-                        <div class="dot-flashing"></div>
-                    </div>
-                </div>
-            </div>
             <div class="chatbot-placeholder" v-if="!inputText" v-html="placeholderText">
             </div>
+        </div>
+
+        <div class="loadingdiv" v-else>
+            <span class="loadingtext">Generating...</span>
         </div>
     </div>
 </template>
@@ -206,5 +198,63 @@ export default {
     display: flex;
     align-items: center;
     color: #6C757D;
+}
+
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #7173FA;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+.loadingdiv {
+  display: flex;
+  justify-content: center;
+  width: 210px;
+  height: 50px;
+  border-radius: 9px;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 10px;
+  background-color: #444ce7;
+  background: linear-gradient(to left, #444ce7, #656be2, #464ee9);
+  background-size: 200% 200%;
+  background-position: -100% 0;
+  animation: loading-gradient 2s ease-in-out infinite;
+  animation-direction: alternate;
+  animation-name: loading-gradient;
+}
+
+.loadingtext {
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 111.111% */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes loading-gradient {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
 </style>

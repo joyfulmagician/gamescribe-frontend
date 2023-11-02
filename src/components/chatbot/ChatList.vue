@@ -2,13 +2,14 @@
 <script>
 
 export default {
+    props: {
+        messageList : Array
+    },
+
     created() {
     },
 
     data() {
-        return {
-            messageList: []
-        }
     },
 
     mounted: function () {
@@ -18,37 +19,6 @@ export default {
     },
 
     methods: {
-        addFirstSuggestionMessage(msg) {
-            this.messageList = []
-            this.messageList.push(this.createSystemMessage(msg))
-        },
-
-        createSystemMessage(msg) {
-            return {
-                type: 'system',
-                content: msg
-            }
-        },
-
-        createUserMessage(msg) {
-            return {
-                type: 'user',
-                content: msg
-            }
-        },
-
-        addMessageList(type, msg) {
-            if (type) {
-                this.messageList.push(this.createSystemMessage(msg));
-            } else {
-                this.messageList.push(this.createUserMessage(msg));
-            }
-
-            this.scrolltoChatEnd();
-
-        },
-
-
         // scroll to end of the chat content
         scrolltoChatEnd(idx) {
             setTimeout(() => {
@@ -74,9 +44,9 @@ export default {
         <div class="scribe-chat-list">
             <div class="message-list-item">
                 <!-- chat histories -->
-                <div class="message-item hover-parent" :class="'item-' + index + ' item-' + item.type"
+                <div class="message-item hover-parent" :class="'item-' + index + ' item-' + item.role"
                     v-for="(item, index) in this.messageList" :key="'message' + index">
-                    <div v-if="item.type == 'system'" class="message-item-content">
+                    <div v-if="item.role == 'system'" class="message-item-content">
                         <img src="@/assets/images/ico/ico-chatlogo.png" />
                         <span class="message-item-content-text" v-html="item.content"></span>
                     </div>

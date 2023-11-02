@@ -3,7 +3,8 @@ import { CHATCONST } from "@/const/value.js"
 
 export default {
     props: {
-        mainContent: String
+        mainContent: String,
+        isContentGenerating: Boolean,
     },
     components: {
     },
@@ -53,7 +54,12 @@ export default {
         </div>
 
 
+        <div class="loading-indicator" v-if="isContentGenerating">
+            <div class="loader"></div>
+        </div>
+
         <div v-html="mainContent">
+            
         </div>
 
         <!-- <textarea class="desc-content custom-scroll-small scroll-div-y" :class="editState && 'edit-active'" v-bind:readonly="!editState" v-html="mainContent"></textarea> -->
@@ -215,5 +221,28 @@ export default {
 .desc-content.edit-active {
     border: 1px solid #3f3f3f;
     background-color: #FFFFFF11;
+}
+
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: auto;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #7173FA;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>

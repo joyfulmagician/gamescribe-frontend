@@ -22,7 +22,8 @@ export default {
     data() {
         return {
             CHAT_CATEGORY: CHAT_CATEGORY,
-            messageList: []
+            messageList: [],
+            lastGeneratedContent: ""
         }
     },
     methods: {
@@ -69,6 +70,7 @@ export default {
             const _this = this;
             _this.getChatMainChunkAPI(function (chunk) {
                 const message = chunk.result;
+                _this.lastGeneratedContent = message
                 _this.$emit('setMainContent', message);
                 _this.$emit('setLoadingState', false);
                 _this.$refs.chatinput.setLoadingState(false);
@@ -99,7 +101,8 @@ export default {
 
         getChatMainChunkAPI(callback) {
             var sendData = {
-                message_list: this.messageList
+                message_list: this.messageList,
+                last_content: this.lastGeneratedContent
             }
 
             axios

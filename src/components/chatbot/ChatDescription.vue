@@ -58,7 +58,7 @@ export default {
             <div class="loader"></div>
         </div>
 
-        <div v-html="mainContent">
+        <div class="main-content scroll-div-y custom-scroll-small relative mb-2" v-html="mainContent">
             
         </div>
 
@@ -68,6 +68,12 @@ export default {
 
 <style>
 @import '@/assets/style/common.css';
+
+.main-content {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    padding: 5px 10px;
+}
 
 .monster-title {
     color: var(--neutral-0, #FFF);

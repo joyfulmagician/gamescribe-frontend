@@ -40,7 +40,7 @@ export default {
 </script>
 
 <template>
-    <div ref="scrolllist" class="scroll-div-y custom-scroll relative mb-2">
+    <div ref="scrolllist" class="scroll-div-y custom-scroll-small relative mb-2">
         <div class="scribe-chat-list">
             <div class="message-list-item">
                 <!-- chat histories -->

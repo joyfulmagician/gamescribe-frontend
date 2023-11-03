@@ -74,9 +74,6 @@ export default {
 <style scoped>
 @import '@/assets/style/common.css';
 
-.chat-content {
-}
-
 .chat-dashboard-left-side {
     justify-content: center;
     margin: auto;

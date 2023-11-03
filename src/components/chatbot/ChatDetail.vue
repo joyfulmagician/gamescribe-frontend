@@ -41,8 +41,8 @@ export default {
 @import '@/assets/style/common.css';
 
 .chat-description {
-    border-radius: 16px;
+    border-radius: 27px;
     background: #181821;
-    min-height: calc(100vh - 130px);
+    height: calc(100vh - 130px);
 }
 </style>

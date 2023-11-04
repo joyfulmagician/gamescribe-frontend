@@ -42,7 +42,7 @@ export default {
                 <span class="key">Monster:</span>
                 <span class="value">They Eye-Stalker:</span>
             </div>
-            <div v-if="!editState" class="header-item btn-edit" @click="editState = true">
+            <!-- <div v-if="!editState" class="header-item btn-edit" @click="editState = true">
                 <img src="@/assets/images/ico/ico-edit.png" class="ico-16" />
                 <span class="key">Edit</span>
             </div>
@@ -50,7 +50,7 @@ export default {
             <div v-else class="header-item btn-edit" @click="editState = false">
                 <img src="@/assets/images/ico/ico-edit.png" class="ico-16" />
                 <span class="key">Save</span>
-            </div>
+            </div> -->
         </div>
 
 
@@ -234,7 +234,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   margin: auto;
 }
 

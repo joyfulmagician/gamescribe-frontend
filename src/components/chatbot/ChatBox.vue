@@ -119,7 +119,7 @@ export default {
         selectedCategory(categoryId) {
             const _this = this;
             if( categoryId == CHAT_CATEGORY.MONSTER ) {
-                this.addFirstSuggestionMessage("what kind of monster are you looking to bring into existence today? Your choices will shape a creature that will haunt the realms of your world")
+                this.addFirstSuggestionMessage("What kind of monster are you looking to bring into existence today? Your choices will shape a creature that will haunt the realms of your world")
             } else if( categoryId == CHAT_CATEGORY.CHARACTER ) {
                 this.addFirstSuggestionMessage("Now, tell me, what kind of character are you looking to craft today? Your choices will shape a legend in the making!")
             } else if( categoryId == CHAT_CATEGORY.SPELL ) {

@@ -1,0 +1,43 @@
+.hexagon {
+    position: relative;
+    width: 150px;
+    /* Adjust the size as needed */
+    height: 170px;
+    /* Adjust the size as needed */
+    margin: 10px;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+    /* Set hexagon color */
+    clip-path: polygon(50% 0%,
+            100% 25%,
+            100% 75%,
+            50% 100%,
+            0% 75%,
+            0% 25%);
+    /* border-radius: 10px; */
+    /* Adjust the radius as needed */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hexagonImage {
+    max-width: 90%;
+    /* Adjust the image size as needed */
+    max-height: 90%;
+    /* Adjust the image size as needed */
+    /* border-radius: 50%; */
+    /* Make the image circular */
+}
+
+.fadeIn {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.fadeOut {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}

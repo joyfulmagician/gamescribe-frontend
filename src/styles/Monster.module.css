@@ -1,0 +1,149 @@
+.monster-card-title {
+    /* font-family: Merriweather; */
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0.02em;
+    text-align: left;
+}
+
+.monster-card-theme {
+    /* font-family: Open Sans; */
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #64748B;
+}
+
+.monster-card-content {
+    /* font-family: Open Sans; */
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #919191;
+    padding-right: 70px;
+}
+
+.monster-card-rule {
+    /* font-family: Open Sans; */
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    text-decoration: underline;
+}
+
+.monster-card-btn {
+    display: flex;
+    height: 32px;
+    padding: 0px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    position: absolute;
+    right: 0px;
+    bottom: 2.5px;
+
+    border-radius: 8px;
+    background: var(--colors-base-secondary-50, #180828);
+
+    background-color: #180828;
+
+    color: var(--colors-base-secondary, #9353D3);
+    /* font-family: Inter; */
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: 0.14px;
+}
+
+.custom-btn {
+    display: flex;
+    height: 48px;
+    padding: 0px 16px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 12px;
+    background: #180828;
+
+    color: #9353D3;
+    /* font-family: Inter; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    /* 150% */
+}
+
+.custom-btn-2 {
+    display: flex;
+    height: 48px;
+    padding: 0px 8px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 12px;
+    background: #27272A;
+
+    color: #D4D4D8;
+    /* font-family: Inter; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    /* 150% */
+}
+
+.monster-hexagon {
+    position: relative;
+    padding: 0;
+    clip-path: polygon(50% 0%,
+            100% 25%,
+            100% 75%,
+            50% 100%,
+            0% 75%,
+            0% 25%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.monster-hexagon-field {
+    scale: 1;
+}
+
+@media screen and (max-width: 1280px) and (min-width: 1180px) {
+    .monster-hexagon-field {
+        scale: 0.8;
+    }
+
+    .monster-hexagon-field>div {
+        margin-left: -20px;
+    }
+}
+
+@media screen and (max-width: 1179.92px) and (min-width: 960px) {
+    .monster-hexagon-field {
+        scale: 0.6;
+    }
+
+    .monster-hexagon-field>div {
+        margin-left: -40px;
+    }
+}

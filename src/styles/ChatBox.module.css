@@ -1,0 +1,112 @@
+.detailContainer {
+    height: calc(100vh - 130px);
+    position: relative;
+}
+
+
+.loadingIndicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #7173FA;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+.loadingdiv {
+    display: flex;
+    justify-content: center;
+    width: 210px;
+    height: 50px;
+    border-radius: 9px;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 10px;
+    background-color: #444ce7;
+    background: linear-gradient(to left, #444ce7, #656be2, #464ee9);
+    background-size: 200% 200%;
+    background-position: -100% 0;
+    animation: loading-gradient 2s ease-in-out infinite;
+    animation-direction: alternate;
+    animation-name: loading-gradient;
+}
+
+.loadingtext {
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loading-gradient {
+    0% {
+        background-position: -100% 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+/* styles/monster-markdown.module.css */
+.monster-stat-block {
+    font-family: 'Arial', sans-serif;
+    margin-top: 0px;
+    height: 95%;
+}
+
+.monster-stat-block h2 {
+    font-size: 2.5em;
+}
+
+.monster-stat-block h3 {
+    margin-bottom: 26px;
+    margin-top: 10px;
+    font-size: 1.5em;
+    line-height: 1em;
+    border-bottom: 2px solid rgba(113, 115, 250, 0.60);
+    padding: 10px 0px;
+    text-transform: uppercase;
+}
+
+.monster-stat-block hr {
+    display: none;
+}
+
+.monster-stat-block table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.monster-stat-block th,
+.monster-stat-block td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.monster-stat-block p {
+    margin-bottom: 10px;
+}
+
+.monster-stat-block ul {
+    list-style: disc;
+}

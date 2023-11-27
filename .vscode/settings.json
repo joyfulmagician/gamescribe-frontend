@@ -1,0 +1,14 @@
+{
+  "prettier.configPath": ".prettierrc",
+  "cSpell.words": [
+    "clsx",
+    "Gamescribe",
+    "heroicons",
+    "sigin",
+    "Signin",
+    "signup",
+    "tailwindcss"
+  ],
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true
+}
